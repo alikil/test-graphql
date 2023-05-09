@@ -1,0 +1,197 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Product's object type"""
+type ProductObject {
+  name: String!
+  price: Float!
+  user: [String!]!
+  id: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""User's object type"""
+type UserObject {
+  name: String!
+  email: String!
+  password: String!
+  age: String!
+  order: [ProductObject!]!
+  id: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Query {
+  users(where: UsersResolver_Users_FilterInputType, order_by: [UsersResolver_Users_SortingInputType!], paginate: PaginatorArgs): [UserObject!]!
+  products(where: GraphProductsResolver_Products_FilterInputType, order_by: [GraphProductsResolver_Products_SortingInputType!], paginate: PaginatorArgs): [ProductObject!]!
+}
+
+input UsersResolver_Users_FilterInputType {
+  name: String_PropertyFilterInputType
+  email: String_PropertyFilterInputType
+  password: String_PropertyFilterInputType
+  age: String_PropertyFilterInputType
+  id: String_PropertyFilterInputType
+  created_at: Date_PropertyFilterInputType
+  updated_at: Date_PropertyFilterInputType
+  and: [UsersResolver_UsersFilterInputType!]
+  or: [UsersResolver_UsersFilterInputType!]
+}
+
+input String_PropertyFilterInputType {
+  eq: String
+  neq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  in: [String!]
+  notin: [String!]
+  like: String
+  notlike: String
+  between: [String!]
+  notbetween: [String!]
+  null: Boolean
+}
+
+input Date_PropertyFilterInputType {
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime!]
+  notin: [DateTime!]
+  like: String
+  notlike: String
+  between: [DateTime!]
+  notbetween: [DateTime!]
+  null: Boolean
+}
+
+input UsersResolver_UsersFilterInputType {
+  name: String_PropertyFilterInputType
+  email: String_PropertyFilterInputType
+  password: String_PropertyFilterInputType
+  age: String_PropertyFilterInputType
+  id: String_PropertyFilterInputType
+  created_at: Date_PropertyFilterInputType
+  updated_at: Date_PropertyFilterInputType
+}
+
+input UsersResolver_Users_SortingInputType {
+  name: SortType
+  email: SortType
+  password: SortType
+  age: SortType
+  id: SortType
+  created_at: SortType
+  updated_at: SortType
+}
+
+enum SortType {
+  ASC
+  DESC
+  ASC_NULLS_LAST
+  ASC_NULLS_FIRST
+  DESC_NULLS_LAST
+  DESC_NULLS_FIRST
+}
+
+input PaginatorArgs {
+  per_page: Int! = 10
+  page: Int! = 0
+}
+
+input GraphProductsResolver_Products_FilterInputType {
+  name: String_PropertyFilterInputType
+  price: Number_PropertyFilterInputType
+  user: String_PropertyFilterInputType
+  id: String_PropertyFilterInputType
+  created_at: Date_PropertyFilterInputType
+  updated_at: Date_PropertyFilterInputType
+  and: [GraphProductsResolver_ProductsFilterInputType!]
+  or: [GraphProductsResolver_ProductsFilterInputType!]
+}
+
+input Number_PropertyFilterInputType {
+  eq: Float
+  neq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  in: [Float!]
+  notin: [Float!]
+  like: String
+  notlike: String
+  between: [Float!]
+  notbetween: [Float!]
+  null: Boolean
+}
+
+input GraphProductsResolver_ProductsFilterInputType {
+  name: String_PropertyFilterInputType
+  price: Number_PropertyFilterInputType
+  user: String_PropertyFilterInputType
+  id: String_PropertyFilterInputType
+  created_at: Date_PropertyFilterInputType
+  updated_at: Date_PropertyFilterInputType
+}
+
+input GraphProductsResolver_Products_SortingInputType {
+  name: SortType
+  price: SortType
+  user: SortType
+  id: SortType
+  created_at: SortType
+  updated_at: SortType
+}
+
+type Mutation {
+  createUser(input: CreateUserInputType!): UserObject!
+  updateUser(id: String!, input: UpdateUserInputType!): UserObject!
+  deleteUser(id: String!): Boolean!
+  addProductToUser(userId: String!, productId: String!): Boolean!
+  removeProductFromUser(userId: String!, productId: String!): Boolean!
+  createProduct(input: CreateProductInputType!): ProductObject!
+  updateProduct(id: String!, input: UpdateProductInputType!): ProductObject!
+  deleteProduct(id: String!): Boolean!
+}
+
+"""Create user's input type"""
+input CreateUserInputType {
+  name: String!
+  email: String!
+  password: String!
+  age: Float!
+}
+
+"""Update user's input type"""
+input UpdateUserInputType {
+  name: String
+  email: String
+  password: String
+  age: Float
+}
+
+"""Create product's input type"""
+input CreateProductInputType {
+  name: String!
+  price: Float!
+}
+
+"""Update product's input type"""
+input UpdateProductInputType {
+  name: String
+  price: Float
+}
